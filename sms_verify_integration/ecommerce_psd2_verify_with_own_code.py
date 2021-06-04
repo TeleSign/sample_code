@@ -1,0 +1,77 @@
+import requests
+import base64
+from random import SystemRandom
+
+def random_with_n_digits(n):
+    # Generate a random number n digits in length using a system random.
+    return "".join(SystemRandom().choice('123456789') for _ in range(n))
+
+# Format HTTP request to print for debugging purposes.
+def format_prepped_request(prepped, encoding=None):
+    # prepped has .method, .path_url, .headers and .body attribute to view the request
+    encoding = encoding or requests.utils.get_encoding_from_headers(prepped.headers)
+    body = prepped.body.decode(encoding) if encoding else '<binary data>'
+    headers = '\n'.join(['{}: {}'.format(*hv) for hv in prepped.headers.items()])
+    return f"""\
+{prepped.method} {prepped.path_url} HTTP/1.1
+{headers}
+
+{body}"""
+
+
+# Replace with your TeleSign authentication credentials from https://teleportal.telesign.com
+customer_id = ""
+api_key = ""
+
+# Set the REST API URL
+domain = "https://rest-ww.telesign.com"
+endpoint = "/v1/verify/sms"
+url = domain + endpoint
+
+# Set the SMS Verify inputs. In your production code, update the phone number dynamically for each purchase.
+phone_number = ""
+verify_code = random_with_n_digits(5)
+
+# Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
+transaction_payee = "Viatu"
+transaction_amount = "€40"
+
+# Generate auth string
+auth_string = customer_id + ":" + api_key
+auth_string = base64.b64encode(auth_string.encode())
+auth_string = auth_string.decode("utf-8")
+auth_string = "Basic " + auth_string
+
+# Create the request
+headers = {
+	"Authorization": auth_string,
+	"Content-Type":"application/x-www-form-urlencoded"
+}
+
+payload = "phone_number=" + phone_number + "&verify_code=" + verify_code + "&transaction_payee=" + transaction_payee + "&transaction_amount=" + transaction_amount
+
+# Make the request and capture the response.
+# If SIM Swap indicates likelihood of real fraud, verification code is not sent.
+# If Score indicates likelihood of friendly fraud, verification code is not sent.
+response = requests.post(url, headers=headers, data=payload.encode('utf-8'))
+prepped_request = format_prepped_request(response.request, 'utf8')
+
+# Display the request in the console for debugging purposes. In your production code, you would likely remove this.
+print("\nRequest:\n")
+print(prepped_request)
+print("\n")
+
+
+# Display the response in the console for debugging purposes. In your production code, you would likely remove this.
+print("\nResponse:\n")
+print(response.text)
+print("\n")
+
+# Display prompt to enter verification code in the console.
+# In your production code, you would instead collect the potential verification code from the end-user in your platform's interface.
+
+user_entered_verify_code = input("Please enter the verification code you were sent: ")
+if verify_code == user_entered_verify_code.strip():
+    print("Your code is correct.")
+else:
+    print("Your code is incorrect.")
