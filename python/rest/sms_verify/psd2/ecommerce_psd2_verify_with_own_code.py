@@ -56,11 +56,7 @@ response = requests.post(url, headers=headers, data=payload.encode('utf-8'))
 prepped_request = format_prepped_request(response.request, 'utf8')
 
 # Display the request and response in the console for debugging purposes. In your production code, you would likely remove this.
-print("\nRequest:\n")
-print(prepped_request)
-print("\nResponse:\n")
-print(response.text)
-print("\n")
+print(f"\nRequest:\n{prepped_request}\n\nResponse:\n{response.text}\n")
 
 # Display prompt to enter verification code in the console.
 # In your production code, you would instead collect the potential verification code from the end-user in your platform's interface.
