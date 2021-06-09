@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from telesignenterprise.verify import VerifyClient
-import json
 from telesign.util import random_with_n_digits
+from dotenv import dotenv_values
 
 # Replace with your TeleSign authentication credentials from https://teleportal.telesign.com
-customer_id = "FFFFFFFF-EEEE-DDDD-1234-AB1234567890"
-api_key = "TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw=="
+customer_id = dotenv_values("../../../.env").get("CUSTOMER_ID")
+api_key = dotenv_values("../../../.env").get("API_KEY")
 
 # Set the SMS Verify inputs. In your production code, update the phone number dynamically for each purchase.
-phone_number = "+447975777666"
+phone_number = "16262026728"
 verify_code = random_with_n_digits(5)
 
 # Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
@@ -25,8 +25,7 @@ verify = VerifyClient(customer_id, api_key)
 response = verify.sms(phone_number, verify_code=verify_code, transaction_payee=transaction_payee, transaction_amount=transaction_amount, language=lang)
 
 # Display the response body in the console for debugging purposes. In your production code, you would likely remove this.
-payload = json.loads(response.body)
-print(f"\nResponse:\n{payload}\n")
+print(f"\nResponse:\n{response.body}\n")
 
 # Display prompt to enter verification code in the console.
 # In your production code, you would instead collect the potential verification code from the end-user in your platform's interface.

@@ -5,3 +5,4 @@
 .gitignore
 .idea
 .idea/
+.env
