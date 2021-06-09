@@ -3,7 +3,7 @@ from telesignenterprise.verify import VerifyClient
 from telesign.util import random_with_n_digits
 from dotenv import dotenv_values
 
-# Replace with your TeleSign authentication credentials from https://teleportal.telesign.com
+# Pull your TeleSign authentication credentials from your .env file.
 customer_id = dotenv_values("../../../.env").get("CUSTOMER_ID")
 api_key = dotenv_values("../../../.env").get("API_KEY")
 

@@ -19,7 +19,7 @@ def format_prepped_request(prepped, encoding=None):
 {body}"""
 
 
-# Replace with your TeleSign authentication credentials from https://teleportal.telesign.com
+# Pull your TeleSign authentication credentials from your .env file.
 customer_id = dotenv_values("../../../.env").get("CUSTOMER_ID")
 api_key = dotenv_values("../../../.env").get("API_KEY")
 
