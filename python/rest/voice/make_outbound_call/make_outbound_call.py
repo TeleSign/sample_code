@@ -12,7 +12,7 @@ send_dtmf = '8' # Digits to add into the call.
 
 url = "https://rest-ww.telesign.com/v2/voice"
 
-# Generate auth string and add it to the request headers.
+# Generate auth string.
 auth_string = customer_id + ":" + api_key
 auth_string = base64.b64encode(auth_string.encode())
 auth_string = auth_string.decode("utf-8")
