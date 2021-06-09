@@ -1,7 +1,7 @@
 import requests
 import base64
+import os
 from random import SystemRandom
-from dotenv import dotenv_values
 
 
 # Generate a random number n digits in length using a system random.
@@ -19,15 +19,16 @@ def format_prepped_request(prepped, encoding=None):
 {body}"""
 
 
-# Pull your TeleSign authentication credentials from your .env file.
-customer_id = dotenv_values("../../../.env").get("CUSTOMER_ID")
-api_key = dotenv_values("../../../.env").get("API_KEY")
+# Replace the defaults below with your TeleSign authentication credentials from https://teleportal.telesign.com
+customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
+api_key = os.getenv('API_KEY', 'TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==')
 
 # Set the REST API URL
 url = "https://rest-ww.telesign.com/v1/verify/sms"
 
 # Set the SMS Verify inputs. In your production code, update the phone number dynamically for each purchase.
-phone_number = "+447975777666"
+# Set the default below to your test phone number. In your production code, update the phone number dynamically for each purchase.
+phone_number = os.getenv('PHONE_NUMBER', '+447975777666')
 verify_code = random_with_n_digits(5)
 
 # Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
