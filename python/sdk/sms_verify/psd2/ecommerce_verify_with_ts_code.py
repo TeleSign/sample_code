@@ -7,7 +7,7 @@ customer_id = dotenv_values("../../../.env").get("CUSTOMER_ID")
 api_key = dotenv_values("../../../.env").get("API_KEY")
 
 # Set the SMS Verify inputs. In your production code, update the phone number dynamically for each purchase.
-phone_number = "16262026728"
+phone_number = "+447975777666"
 
 # Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
 transaction_payee = "Viatu"

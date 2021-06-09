@@ -1,6 +1,7 @@
 import requests
 import base64
 from random import SystemRandom
+from dotenv import dotenv_values
 
 
 # Generate a random number n digits in length using a system random.
@@ -19,8 +20,8 @@ def format_prepped_request(prepped, encoding=None):
 
 
 # Replace with your TeleSign authentication credentials from https://teleportal.telesign.com
-customer_id = "FFFFFFFF-EEEE-DDDD-1234-AB1234567890"
-api_key = "TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw=="
+customer_id = dotenv_values("../../../.env").get("CUSTOMER_ID")
+api_key = dotenv_values("../../../.env").get("API_KEY")
 
 # Set the REST API URL
 url = "https://rest-ww.telesign.com/v1/verify/sms"
