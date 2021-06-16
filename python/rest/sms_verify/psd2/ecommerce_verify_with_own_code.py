@@ -35,7 +35,7 @@ verify_code = random_with_n_digits(5)
 transaction_payee = "Viatu"
 transaction_amount = "€40"
 
-# Specify the language. This triggers the service to use one of our pre-written PSD2/SCA templates.
+# Specify the language. This triggers the service to use the relevant pre-written PSD2/SCA templates. By default the service uses the American English template.
 lang = "en-GB"
 
 # Generate auth string and add it to the request headers
