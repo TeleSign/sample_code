@@ -14,9 +14,9 @@ def add_digest(request_properties, customer_id, api_key):
     new_request_properties = request_properties
     new_request_properties['path_url'] = get_path(new_request_properties['url'])
     method = new_request_properties['method']
-    # Add headers to prepped_request
+    # Add any missing headers with default values
     new_request_properties['headers']['x-ts-auth-method'] = new_request_properties['headers'].get('x-ts-auth-method', 'HMAC-SHA256')
-    new_request_properties['headers']['x-ts-nonce'] = uuid.uuid1().hex
+    new_request_properties['headers']['x-ts-nonce'] = new_request_properties['headers'].get('x-ts-nonce', uuid.uuid1().hex)
 
     if method in ("PUT", "POST"):
         new_request_properties['headers']['Content-Type'] = new_request_properties['headers'].get('Content-Type', 'application/x-www-form-urlencoded')
@@ -24,15 +24,10 @@ def add_digest(request_properties, customer_id, api_key):
     if 'Date' not in new_request_properties['headers'] and 'x-ts-date' not in new_request_properties['headers']:
         new_request_properties['headers']['Date'] = format_current_date()
 
-    # Generate signature
     signature = generate_signature(customer_id, api_key, new_request_properties)
-
-    # Add Digest auth header
     new_request_properties['headers']['Authorization'] = 'TSA ' + customer_id + ':' + signature
-
     # Sort the headers in alpha order
     new_headers = {k: request_properties['headers'][k] for k in sorted(request_properties['headers'])}
-
     return new_headers
 
 def create_basic_auth_string(customer_id, api_key):
@@ -55,11 +50,7 @@ def generate_signature(customer_id, api_key, new_request_properties):
         auth_method = new_request_properties['headers']['x-ts-auth-method']
 
     new_request_properties['body'] = new_request_properties.get('body', None)
-
-    if new_request_properties['body']:
-        fields = new_request_properties['body']
-    else:
-        fields = None
+    fields = new_request_properties['body']
 
     string_to_sign = method + '\n'
     string_to_sign += new_request_properties['headers'].get('Content-Type', '') + '\n'
