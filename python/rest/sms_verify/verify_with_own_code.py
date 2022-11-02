@@ -27,7 +27,8 @@ verify_code = random_with_n_digits(5)
 # Add all headers except auth headers
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Date': ts_auth.format_current_date()
+    'Date': ts_auth.format_current_date(),
+    'x-ts-auth-method': 'hmac-sha1'
 }
 
 # Create the payload

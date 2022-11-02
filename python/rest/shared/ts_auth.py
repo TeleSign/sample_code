@@ -1,18 +1,20 @@
 import base64
+from copy import deepcopy
 from datetime import datetime
 import hmac
 import pytz
+from urllib.parse import urlparse
 import uuid
 
 
 def add_basic(request_properties, customer_id, api_key):
-    new_request_properties = request_properties
+    new_request_properties = deepcopy(request_properties)
     new_request_properties['headers']['Authorization'] = create_basic_auth_string(customer_id, api_key)
     return new_request_properties['headers']
 
 def add_digest(request_properties, customer_id, api_key):
-    new_request_properties = request_properties
-    new_request_properties['path_url'] = get_path(new_request_properties['url'])
+    new_request_properties = deepcopy(request_properties)
+    new_request_properties['path_url'] = urlparse(new_request_properties['url']).path
     method = new_request_properties['method']
     # Add any missing headers with default values
     new_request_properties['headers']['x-ts-auth-method'] = new_request_properties['headers'].get('x-ts-auth-method', 'HMAC-SHA256')
@@ -27,7 +29,7 @@ def add_digest(request_properties, customer_id, api_key):
     signature = generate_signature(customer_id, api_key, new_request_properties)
     new_request_properties['headers']['Authorization'] = 'TSA ' + customer_id + ':' + signature
     # Sort the headers in alpha order
-    new_headers = {k: request_properties['headers'][k] for k in sorted(request_properties['headers'])}
+    new_headers = {k: new_request_properties['headers'][k] for k in sorted(new_request_properties['headers'])}
     return new_headers
 
 def create_basic_auth_string(customer_id, api_key):
@@ -38,13 +40,13 @@ def create_basic_auth_string(customer_id, api_key):
     return auth_string
 
 def format_current_date():
-    now = datetime.now(pytz.utc)
-    return now.strftime('%a, %d %b %Y %H:%M:%S %Z').replace('UTC', 'GMT')
+    now = datetime.now(pytz.timezone('GMT'))
+    return now.strftime('%a, %d %b %Y %H:%M:%S %Z')
 
 def generate_signature(customer_id, api_key, new_request_properties):
     method = new_request_properties['method']
 
-    if new_request_properties['headers']['x-ts-auth-method'] == 'HMAC-SHA1' or new_request_properties['headers']['x-ts-auth-method'] == 'HMAC-SHA256':
+    if new_request_properties['headers']['x-ts-auth-method'].upper() == 'HMAC-SHA1' or new_request_properties['headers']['x-ts-auth-method'].upper() == 'HMAC-SHA256':
         auth_method = new_request_properties['headers']['x-ts-auth-method'].split('-')[1]
     else:
         auth_method = new_request_properties['headers']['x-ts-auth-method']
@@ -79,17 +81,6 @@ def generate_signature(customer_id, api_key, new_request_properties):
     signature = base64.b64encode(hmac_obj.digest()).decode('utf-8')
     return signature
 
-def get_hostname(url):
-    parts = url.split('//')
-    return parts[1].split('/')[0]
-
-def get_path(url):
-    parts = url.split('//')
-    parts2 = parts[1].split('/')
-    parts2.pop(0)
-    path = ('/' + '/'.join(parts2))
-    return path
-
 def pretty_print_request(req):
     print('{}\n{}\r\n{}\r\n\r\n{}\n'.format(
         'Request:',
@@ -97,4 +88,3 @@ def pretty_print_request(req):
         '\r\n'.join('{}: {}'.format(k, v) for k, v in req.headers.items()),
         req.body,
     ))
-
