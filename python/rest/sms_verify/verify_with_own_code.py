@@ -12,7 +12,7 @@ def random_with_n_digits(n):
     return "".join(SystemRandom().choice('123456789') for _ in range(n))
 
 
-# Replace the defaults below with your Telesign authentication credentials from https://teleportal.telesign.com
+# Replace the defaults below with your Telesign authentication credentials
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
 api_key = os.getenv('API_KEY', 'TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==')
 
@@ -27,8 +27,7 @@ verify_code = random_with_n_digits(5)
 # Add all headers except auth headers
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Date': ts_auth.format_current_date(),
-    'x-ts-auth-method': 'hmac-sha1'
+    'Date': ts_auth.format_current_date()
 }
 
 # Create the payload
