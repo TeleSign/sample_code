@@ -2,7 +2,6 @@ from requests import Request, Session
 import os
 import requests
 import sys
-
 sys.path.append('../../shared/')
 import ts_auth
 

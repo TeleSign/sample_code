@@ -2,10 +2,8 @@ from requests import Request, Session
 import os
 from random import SystemRandom
 import sys
-
 sys.path.append('../shared/')
 import ts_auth
-
 
 # Generate a random number n digits in length using a system random.
 def random_with_n_digits(n):

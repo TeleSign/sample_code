@@ -3,7 +3,7 @@ from telesignenterprise.verify import VerifyClient
 from telesign.util import random_with_n_digits
 import os
 
-# Replace the defaults below with your TeleSign authentication credentials from https://teleportal.telesign.com
+# Replace the defaults below with your Telesign authentication credentials.
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
 api_key = os.getenv('API_KEY', 'TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==')
 
@@ -15,7 +15,7 @@ verify_code = random_with_n_digits(5)
 
 # Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
 transaction_payee = "Viatu"
-transaction_amount = "€40"
+transaction_amount = "40 pounds"
 
 # Specify the language. This triggers the service to use the relevant pre-written PSD2/SCA templates. By default the service uses the American English template.
 lang = "en-GB"

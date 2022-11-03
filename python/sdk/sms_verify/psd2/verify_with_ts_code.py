@@ -11,7 +11,7 @@ phone_number = os.getenv('PHONE_NUMBER', '+447975777666')
 
 # Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
 transaction_payee = "Viatu"
-transaction_amount = "€40"
+transaction_amount = "40 pounds"
 
 # Specify the language. This triggers the service to use the relevant pre-written PSD2/SCA templates. By default the service uses the American English template.
 lang = "en-GB"
