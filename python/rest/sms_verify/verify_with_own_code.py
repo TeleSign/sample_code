@@ -2,9 +2,8 @@ from requests import Request, Session
 import os
 from random import SystemRandom
 import sys
-sys.path.append('../../shared/')
+sys.path.append('../shared/')
 import ts_auth
-
 
 # Generate a random number n digits in length using a system random.
 def random_with_n_digits(n):
@@ -20,15 +19,8 @@ url = "https://rest-ww.telesign.com/v1/verify/sms"
 
 # Set the request inputs.
 # Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
-phone_number = os.getenv('PHONE_NUMBER', '+447975777666')
+phone_number = os.getenv('PHONE_NUMBER', '15558675309')
 verify_code = random_with_n_digits(5)
-
-# Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
-transaction_payee = "Viatu"
-transaction_amount = "40 pounds"
-
-# Specify the language. This triggers the service to use the relevant pre-written PSD2/SCA templates. By default the service uses the American English template.
-lang = "en-GB"
 
 # Add all headers except auth headers
 headers = {
@@ -37,7 +29,7 @@ headers = {
 }
 
 # Create the payload
-payload = f"phone_number={phone_number}&verify_code={verify_code}&transaction_payee={transaction_payee}&transaction_amount={transaction_amount}&language={lang}"
+payload = f"phone_number={phone_number}&verify_code={verify_code}"
 
 # Create session and prepped request
 s = Session()

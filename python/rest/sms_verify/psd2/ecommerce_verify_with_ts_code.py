@@ -1,65 +1,85 @@
-import requests
-import base64
+from requests import Request, Session, get
 import os
+from random import SystemRandom
+import sys
+sys.path.append('../../shared/')
+import ts_auth
 
 
-# Format HTTP request to print for debugging purposes.
-def format_prepped_request(prepped, encoding=None):
-    encoding = encoding or requests.utils.get_encoding_from_headers(prepped.headers)
-    body = prepped.body.decode(encoding) if encoding else '<binary data>'
-    headers = '\n'.join(['{}: {}'.format(*hv) for hv in prepped.headers.items()])
-    return f"""\
-{prepped.method} {prepped.path_url}
-{headers}
-{body}"""
+def prep_request(request):
+    request_prepped = request.prepare()
+    request_properties = {
+        "method": request_prepped.method,
+        "headers": request_prepped.headers,
+        "body": request_prepped.body,
+        "url": request_prepped.url
+    }
+    if auth_method == "basic":
+        request_prepped.headers = ts_auth.add_basic(request_properties, customer_id, api_key)
+    elif auth_method == "digest":
+        request_prepped.headers = ts_auth.add_digest(request_properties, customer_id, api_key)
+    else:
+        print("Valid auth method not specified.")
+
+    return request_prepped
 
 
-# Replace the defaults below with your TeleSign authentication credentials from https://teleportal.telesign.com
+# Specify which auth method to use, "basic" or "digest"
+auth_method = "digest"
+
+# Replace the defaults below with your Telesign authentication credentials
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
 api_key = os.getenv('API_KEY', 'TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==')
 
-# Set the REST API URLs
+# Set the REST API URL
 base_url = "https://rest-ww.telesign.com/v1/verify/"
 verify_url = base_url + "sms"
 
-# Set the SMS Verify inputs. In your production code, update the phone number dynamically for each purchase.
-# Set the default below to your test phone number. In your production code, update the phone number dynamically for each purchase.
+# Set the request inputs.
+# Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
 phone_number = os.getenv('PHONE_NUMBER', '+447975777666')
 
 # Set PSD2 dynamic linking. In your production code, update these values dynamically for each purchase.
 transaction_payee = "Viatu"
-transaction_amount = "€95"
+transaction_amount = "40 pounds"
 
 # Specify the language. This triggers the service to use the relevant pre-written PSD2/SCA templates. By default the service uses the American English template.
 lang = "en-GB"
 
-# Generate auth string and add it to the request headers
-auth_string = customer_id + ":" + api_key
-auth_string = base64.b64encode(auth_string.encode())
-auth_string = auth_string.decode("utf-8")
-auth_string = "Basic " + auth_string
+# Add all headers except auth headers
 headers = {
-	"Authorization": auth_string,
-	"Content-Type":"application/x-www-form-urlencoded"
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Date': ts_auth.format_current_date()
 }
 
 # Create the payload
 payload = f"phone_number={phone_number}&transaction_payee={transaction_payee}&transaction_amount={transaction_amount}&language={lang}"
 
+# Create session and prepped request
+s = Session()
+req = Request('POST', verify_url, data=payload, headers=headers)
+prepped_request = prep_request(req)
+
 # Make the request and capture the response.
-# If SIM Swap indicates likelihood of real fraud, verification code is not sent.
-# If Score indicates likelihood of friendly fraud, verification code is not sent.
-response = requests.post(verify_url, headers=headers, data=payload.encode('utf-8'))
-prepped_request = format_prepped_request(response.request, 'utf8')
+response = s.send(prepped_request)
 
 # Display the request and response in the console for debugging purposes. In your production code, you would likely remove this.
-print(f"\nVerify Request:\n{prepped_request}\n\nVerify Response:\n{response.text}\n")
+ts_auth.pretty_print_request(prepped_request)
+print(f"Response:\n{response.text}\n")
 
 # Display prompt to enter verification code in the console.
 # In your production code, you would instead collect the potential verification code from the end-user in your platform's interface.
 user_entered_verify_code = input("Please enter the verification code you were sent: ")
 status_url = base_url + response.json()['reference_id'] + "?verify_code=" + user_entered_verify_code
-response2 = requests.get(status_url, headers=headers)
+headers2 = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Date': ts_auth.format_current_date()
+}
+# Get status of the transaction from Telesign
+s2 = Session()
+req2 = Request('GET', status_url, headers=headers2)
+prepped_request2 = prep_request(req2)
+response2 = s.send(prepped_request2)
 status = response2.json()['verify']['code_state']
 if status == 'VALID':
     print("Your code is correct.")
