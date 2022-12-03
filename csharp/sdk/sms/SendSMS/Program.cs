@@ -28,7 +28,7 @@ namespace SendSMS
 
             try
             {
-                MessagingClient messagingClient = new MessagingClient(customerId, apiKey, "https://rest-ww.telesign.com");
+                MessagingClient messagingClient = new MessagingClient(customerId, apiKey);
                 RestClient.TelesignResponse telesignResponse = messagingClient.Message(phoneNumber, message, messageType);
             }
             catch (Exception e)
