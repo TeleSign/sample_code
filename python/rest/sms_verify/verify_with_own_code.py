@@ -47,6 +47,7 @@ request_properties = {
 prepped_request.headers = ts_auth.add_digest(request_properties, customer_id, api_key)
 
 # Make the request and capture the response.
+# If Telesign Verify Plus is enabled for SMS Verify for your account, Telesign checks the risk score of the phone number before sending the SMS.
 response = s.send(prepped_request)
 
 # Display the request and response in the console for debugging purposes. In your production code, you would likely remove this.
