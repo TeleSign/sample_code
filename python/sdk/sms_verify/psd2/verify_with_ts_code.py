@@ -18,7 +18,7 @@ lang = "en-GB"
 
 # Make the request and capture the response.
 # If SIM Swap indicates likelihood of real fraud, verification code is not sent.
-# If Score indicates likelihood of friendly fraud, verification code is not sent.
+# If Verify Plus indicates likelihood of friendly fraud, verification code is not sent.
 verify = VerifyClient(customer_id, api_key)
 response = verify.sms(phone_number, transaction_payee=transaction_payee, transaction_amount=transaction_amount, language=lang)
 
