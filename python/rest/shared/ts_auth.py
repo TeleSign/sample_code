@@ -82,7 +82,7 @@ def generate_signature(customer_id, api_key, new_request_properties):
     return signature
 
 def pretty_print_request(req):
-    print('{}\n{}\r\n{}\r\n\r\n{}\n'.format(
+    print('\n{}\n{}\r\n{}\r\n\r\n{}\n'.format(
         'Request:',
         req.method + ' ' + req.url,
         '\r\n'.join('{}: {}'.format(k, v) for k, v in req.headers.items()),
