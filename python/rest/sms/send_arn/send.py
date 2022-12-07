@@ -1,6 +1,5 @@
 from requests import Request, Session
 import os
-import requests
 import sys
 sys.path.append('../../shared/')
 import ts_auth
@@ -39,7 +38,6 @@ request_properties = {
     "body": prepped_request.body,
     "url": prepped_request.url
 }
-
 # prepped_request.headers = ts_auth.add_basic(request_properties, customer_id, api_key)
 prepped_request.headers = ts_auth.add_digest(request_properties, customer_id, api_key)
 
