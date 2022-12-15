@@ -17,7 +17,7 @@ public class App {
         String messageType = "ARN";
 
         try {
-            MessagingClient messagingClient = new 	MessagingClient(customerId, apiKey);
+            MessagingClient messagingClient = new MessagingClient(customerId, apiKey);
             RestClient.TelesignResponse telesignResponse = 	messagingClient.message(phoneNumber, message, messageType, null);
         } catch (Exception e) {
             e.printStackTrace();
