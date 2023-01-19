@@ -1,0 +1,9 @@
+**/vendor/
+**/composer.json
+**/composer.lock
+**/bin/
+**/obj/
+**/*.csproj
+**/package-lock.json
+**/package.json
+**/node_modules/
