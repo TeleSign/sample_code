@@ -11,6 +11,7 @@ namespace SendOTP
         {
             string customerId = "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
             string apiKey = "TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
+            string phoneNumber = "15558675309";
 
             if (System.Environment.GetEnvironmentVariable("CUSTOMER_ID") != null) {
                 customerId = System.Environment.GetEnvironmentVariable("CUSTOMER_ID");
@@ -23,8 +24,6 @@ namespace SendOTP
             if (System.Environment.GetEnvironmentVariable("PHONE_NUMBER") != null) {
                 phoneNumber = System.Environment.GetEnvironmentVariable("PHONE_NUMBER");
             }
-
-            string phoneNumber = "15558675309";
 
             Random random = new Random();
             int num = random.Next(100000);
