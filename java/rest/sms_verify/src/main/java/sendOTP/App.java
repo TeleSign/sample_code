@@ -16,7 +16,7 @@ public class App {
 		  .setHeader("accept", "application/json")
 		  .setHeader("content-type", "application/x-www-form-urlencoded")
 		  .setHeader("authorization", createBasicAuthString("7095B95B-1573-44AB-AA2B-EA9109AC1EF8", "ksOcBvv7gkvYUgCYotrizfv0Coe+zMspTHH47mGuAmntY8ZkEy83GCwlEXTQ9jdf/Ybz1/w0KsUjZGyLByXrUQ=="))
-		  .setBody(String.format("is_primary=true&phone_number=%s",))
+		  .setBody(String.format("is_primary=true&phone_number=%s", phoneNumber))
 		  .execute()
 		  .toCompletableFuture()
 		  .thenAccept(System.out::println)
