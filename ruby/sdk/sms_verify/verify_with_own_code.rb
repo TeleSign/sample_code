@@ -3,7 +3,7 @@ require 'telesignenterprise'
 
 # Replace the defaults below with your Telesign authentication credentials.
 customer_id = ENV['CUSTOMER_ID'] || 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890'
-api_key = ENV['API_KEY'] || 'TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw=='
+api_key = ENV['API_KEY'] || 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw=='
 
 # Set the request inputs.
 # Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
