@@ -8,3 +8,11 @@
 **/package.json
 **/node_modules/
 **/.vscode/
+**/gradle/
+**/.gradle/
+**/bin/
+**/gradlew
+**/gradlew.bat
+**/settings.gradle
+**/src/test/
+**/src/main/resources/
