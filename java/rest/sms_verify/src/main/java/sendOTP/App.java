@@ -30,7 +30,6 @@ public class App {
     	auth_string = customer_id +":" + api_key;
     	auth_string = Base64.getEncoder().encodeToString(auth_string.getBytes());
     	auth_string = "Basic " + auth_string;
-    	System.out.println("Print  "+ auth_string);
     	
     	return auth_string;
     }
