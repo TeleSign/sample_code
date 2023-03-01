@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from telesign.messaging import MessagingClient
 import os
 
