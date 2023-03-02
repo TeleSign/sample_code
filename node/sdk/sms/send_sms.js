@@ -13,7 +13,7 @@ const client = new TeleSignSDK( customerId, apiKey);
 function printResponse(error, responseBody) {
     if (error === null) {
         console.log("## Response: ##");
-        console.log(responseBody);
+        console.log(JSON.stringify(responseBody));
     } else {
         console.error("Unable to send message. " + error);
     }
