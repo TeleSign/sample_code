@@ -4,5 +4,5 @@
 # Ignore Gradle build output directory
 build
 
-# Ignore local version of Telesign SDK
+# Ignore local instance of Telesign SDK
 app/src/main/java/com/*
