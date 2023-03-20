@@ -5,4 +5,4 @@
 build
 
 # Ignore local version of Telesign SDK
-app/src/main/java/com/
+./app/src/main/java/com/
