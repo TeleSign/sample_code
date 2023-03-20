@@ -20,6 +20,8 @@ public class App {
         try {
             MessagingClient messagingClient = new MessagingClient(customerId, apiKey);
             RestClient.TelesignResponse telesignResponse = messagingClient.message(phoneNumber, message, messageType, null);
+            System.out.println(telesignResponse.statusCode);
+            System.out.println(telesignResponse.body);
         } catch (Exception e) {
             e.printStackTrace();
         }
