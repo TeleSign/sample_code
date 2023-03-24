@@ -9,7 +9,7 @@ namespace SendSMS
         {
             string customerId = "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
             string apiKey = "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
-            string phoneNumber = "15558675309";
+            string phoneNumber = "1234567890";
 
             if (System.Environment.GetEnvironmentVariable("CUSTOMER_ID") != null) {
                 customerId = System.Environment.GetEnvironmentVariable("CUSTOMER_ID");

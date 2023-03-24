@@ -6,7 +6,7 @@ api_key = ENV['API_KEY'] || 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6Ne
 
 # Set the request inputs.
 # Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
-phone_number = ENV['PHONE_NUMBER'] || '15551212'
+phone_number = ENV['PHONE_NUMBER'] || '1234567890'
 message = 'Hello world'
 message_type = 'ARN'
 
