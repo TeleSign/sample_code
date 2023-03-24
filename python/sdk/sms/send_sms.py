@@ -7,7 +7,7 @@ api_key = os.getenv('API_KEY', 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh
 
 # Set the request inputs.
 # Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
-phone_number = os.getenv('PHONE_NUMBER', '15551212')
+phone_number = os.getenv('PHONE_NUMBER', '1234567890')
 message = "Hello world"
 message_type = "ARN"
 
