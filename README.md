@@ -1,6 +1,6 @@
-# Telesign Sample Code (Enterprise)
-Code samples to help you learn how to integrate Telesign Enterprise products. 
+# Telesign Sample Code
+Code samples to help you learn how to integrate Telesign products. 
 
-**Documentation:** https://enterprise.telesign.com/
+**Documentation:** https://developer.telesign.com
 
 
