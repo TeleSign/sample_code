@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from telesignenterprise.verify import VerifyClient
 from telesign.util import random_with_n_digits
 import os
@@ -8,7 +7,7 @@ customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
 api_key = os.getenv('API_KEY', 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==')
 
 # Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
-phone_number = os.getenv('PHONE_NUMBER', '+447975777666')
+phone_number = os.getenv('PHONE_NUMBER', '1234567890')
 
 # Generate verification code.
 verify_code = random_with_n_digits(5)
