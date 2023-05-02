@@ -23,7 +23,9 @@ public class App {
         try {
             VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
             RestClient.TelesignResponse telesignResponse = verifyClient.sms(phoneNumber, params);
-            System.out.println("Please enter your verification code:");
+            System.out.println("\n" + "Response HTTP status:" + telesignResponse.statusCode);
+            System.out.println("Response body:" + telesignResponse.body + "\n");
+            System.out.println("Please enter the verification code you were sent:");
             Scanner s = new Scanner(System.in);
             String code = s.next();
             if (verifyCode.equalsIgnoreCase(code)) {
