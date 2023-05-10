@@ -14,7 +14,7 @@ public class App {
     public static void main(String[] args) {
         String customerId = System.getenv().getOrDefault("CUSTOMER_ID", "FFFFFFFF-EEEE-DDDD-1234-AB1234567890");
         String apiKey = System.getenv().getOrDefault("API_KEY", "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw=="); 
-        String phoneNumber = System.getenv().getOrDefault("PHONE_NUMBER", "1234567890");
+        String phoneNumber = System.getenv().getOrDefault("PHONE_NUMBER", "11234567890");
         String verifyCode = Util.randomWithNDigits(5);
 
         HashMap<String, String> params = new HashMap<>();
