@@ -1,5 +1,8 @@
 # Ignore Gradle project-specific cache directory
 .gradle
 
+# Ignore Telesign SDK files manually copied in
+**/app/src/main/java/com/
+
 # Ignore Gradle build output directory
 build
