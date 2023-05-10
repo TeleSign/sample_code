@@ -2,7 +2,7 @@
 .gradle
 
 # Ignore Telesign SDK files manually copied in
-**/app/src/main/java/com/
+**/app/src/main/java/com/*
 
 # Ignore Gradle build output directory
 build
