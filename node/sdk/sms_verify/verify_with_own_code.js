@@ -17,9 +17,6 @@ const params = {
 // Instantiate a verification client object.
 const client = new TelesignSDK(customerId, apiKey);
 
-// Make the request and capture the response.
-client.verify.sms(smsVerifyCallback, phoneNumber, params);
-
 // Define the callback.
 function smsVerifyCallback(error, responseBody) {
     // Display the response body in the console for debugging purposes. 
@@ -53,3 +50,6 @@ function verify(input) {
     }
     process.exit();
 }
+
+// Make the request and capture the response.
+client.verify.sms(smsVerifyCallback, phoneNumber, params);
