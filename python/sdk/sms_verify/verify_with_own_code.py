@@ -19,7 +19,7 @@ verify = VerifyClient(customer_id, api_key)
 # Make the request and capture the response.
 response = verify.sms(phone_number, verify_code=verify_code)
 
-# Display the response body in the console for debugging purposes. 
+# Display the response in the console for debugging purposes. 
 # In your production code, you would likely remove this.
 print(f"\nResponse HTTP status:\n{response.status_code}\n")
 print(f"\nResponse body:\n{response.body}\n")
