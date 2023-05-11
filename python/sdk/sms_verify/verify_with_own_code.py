@@ -6,22 +6,30 @@ import os
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
 api_key = os.getenv('API_KEY', 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==')
 
-# Set the default below to your test phone number. In your production code, update the phone number dynamically for each transaction.
+# Set the default below to your test phone number. 
+# In your production code, update the phone number dynamically for each transaction.
 phone_number = os.getenv('PHONE_NUMBER', '11234567890')
 
-# Generate verification code.
+# Generate one-time passcode (OTP) for verification.
 verify_code = random_with_n_digits(5)
 
-# Make the request and capture the response.
+# Instantiate a verification client object.
 verify = VerifyClient(customer_id, api_key)
+
+# Make the request and capture the response.
 response = verify.sms(phone_number, verify_code=verify_code)
 
-# Display the response body in the console for debugging purposes. In your production code, you would likely remove this.
-print(f"\nResponse:\n{response.body}\n")
+# Display the response body in the console for debugging purposes. 
+# In your production code, you would likely remove this.
+print(f"\nResponse HTTP status:\n{response.status_code}\n")
+print(f"\nResponse body:\n{response.body}\n")
 
-# Display prompt to enter verification code in the console.
-# In your production code, you would instead collect the potential verification code from the end-user in your platform's interface.
+# Display prompt to enter asserted OTP in the console.
+# In your production code, you would instead collect the asserted OTP from the end-user.
 user_entered_verify_code = input("Please enter the verification code you were sent: ")
+
+# Determine if the asserted OTP matches your original OTP, and resolve the login attempt accordingly.
+# You can simulate this by reporting whether the codes match.
 if verify_code == user_entered_verify_code.strip():
     print("Your code is correct.")
 else:
