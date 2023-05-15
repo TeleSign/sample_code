@@ -1,10 +1,10 @@
 const TelesignSDK = require('telesignenterprisesdk');
 
-// Replace the defaults below with your Telesign authentication credentials.
+// Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 const customerId = process.env.CUSTOMER_ID || "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
 const apiKey = process.env.API_KEY || "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
 
-// Set the default below to your test phone number. 
+// Set the default below to your test phone number or pull it from an environment variable. 
 // In your production code, update the phone number dynamically for each transaction.
 const phoneNumber = process.env.PHONE_NUMBER || "11234567890";
 

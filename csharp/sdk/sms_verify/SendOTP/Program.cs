@@ -17,7 +17,7 @@ namespace SendOTP
             // In your production code, update the phone number dynamically for each transaction.
             string phoneNumber = "11234567890";
 
-            // (Optional) Pull authentication credentials from environment variables instead of hardcoding them.
+            // (Optional) Pull values from environment variables instead of hardcoding them.
             if (System.Environment.GetEnvironmentVariable("CUSTOMER_ID") != null) {
                 customerId = System.Environment.GetEnvironmentVariable("CUSTOMER_ID");
             }
@@ -68,7 +68,7 @@ namespace SendOTP
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("ERROR: An exception occured.");
             }
         }
     }
