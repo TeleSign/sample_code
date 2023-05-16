@@ -31,10 +31,6 @@ public class App {
             // Instantiate a verification client object.
             VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
             
-            if (true) {
-              throw new IllegalArgumentException("Integer already added.");
-            }
-
             // Make the request and capture the response.
             RestClient.TelesignResponse telesignResponse = verifyClient.sms(phoneNumber, params);
 
