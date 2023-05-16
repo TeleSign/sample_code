@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 
 public class App {
+
+    
     public static void main(String[] args) {
         // Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
         String customerId = System.getenv().getOrDefault("CUSTOMER_ID", "FFFFFFFF-EEEE-DDDD-1234-AB1234567890");
@@ -29,6 +31,10 @@ public class App {
             // Instantiate a verification client object.
             VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
             
+            if (true) {
+              throw new IllegalArgumentException("Integer already added.");
+            }
+
             // Make the request and capture the response.
             RestClient.TelesignResponse telesignResponse = verifyClient.sms(phoneNumber, params);
 
@@ -51,7 +57,7 @@ public class App {
               System.out.println("Your code is incorrect.");
             }
         } catch (Exception e) {
-          System.out.println("ERROR: An exception occured.");
+          System.out.println((char)27 + "[31m" + "\nAn exception occurred.\nERROR: " + e.getMessage());
         }
     }
 }
