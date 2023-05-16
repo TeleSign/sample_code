@@ -39,6 +39,11 @@ namespace SendOTP
 
             try
             {
+                if (true) {
+                    throw new ArgumentOutOfRangeException(
+            "Parameter index is out of range.");
+                }
+                
                 // Instantiate a verification client object.
                 VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
 
@@ -68,7 +73,9 @@ namespace SendOTP
             }
             catch (Exception e)
             {
-                Console.WriteLine("ERROR: An exception occured.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAn exception occured.\nERROR: " + e.Message + "\n");
+                Console.ResetColor();
             }
         }
     }
