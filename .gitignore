@@ -1,6 +1,7 @@
 **/vendor/
 **/composer.json
 **/composer.lock
+**/composer.phar
 **/bin/
 **/obj/
 **/*.csproj
