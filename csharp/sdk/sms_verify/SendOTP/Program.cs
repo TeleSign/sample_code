@@ -38,12 +38,7 @@ namespace SendOTP
             parameters.Add("verify_code", verifyCode);
 
             try
-            {
-                if (true) {
-                    throw new ArgumentOutOfRangeException(
-            "Parameter index is out of range.");
-                }
-                
+            {                
                 // Instantiate a verification client object.
                 VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
 
