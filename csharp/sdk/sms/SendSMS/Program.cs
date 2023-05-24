@@ -7,10 +7,15 @@ namespace SendSMS
     {
         static void Main(string[] args)
         {
+            // Replace the defaults below with your Telesign authentication credentials.
             string customerId = "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
             string apiKey = "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
-            string phoneNumber = "15558675309";
+            
+            // Set the default below to your test phone number. 
+            // In your production code, update the phone number dynamically for each transaction.
+            string phoneNumber = "11234567890";
 
+            // (Optional) Pull values from environment variables instead of hardcoding them.
             if (System.Environment.GetEnvironmentVariable("CUSTOMER_ID") != null) {
                 customerId = System.Environment.GetEnvironmentVariable("CUSTOMER_ID");
             }
@@ -28,7 +33,10 @@ namespace SendSMS
 
             try
             {
+                // Instantiate a verification client object.
                 MessagingClient messagingClient = new MessagingClient(customerId, apiKey);
+
+                
                 RestClient.TelesignResponse telesignResponse = messagingClient.Message(phoneNumber, message, messageType);
             }
             catch (Exception e)
