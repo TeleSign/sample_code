@@ -9,10 +9,15 @@ namespace SendOTP
     {
         public static void Main(string[] args)
         {
+            // Replace the defaults below with your Telesign authentication credentials.
             string customerId = "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
             string apiKey = "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
-            string phoneNumber = "15558675309";
+            
+            // Set the default below to your test phone number. 
+            // In your production code, update the phone number dynamically for each transaction.                
+            string phoneNumber = "11234567890";
 
+            // (Optional) Pull values from environment variables instead of hardcoding them.
             if (System.Environment.GetEnvironmentVariable("CUSTOMER_ID") != null) {
                 customerId = System.Environment.GetEnvironmentVariable("CUSTOMER_ID");
             }
@@ -25,34 +30,51 @@ namespace SendOTP
                 phoneNumber = System.Environment.GetEnvironmentVariable("PHONE_NUMBER");
             }
 
+            // Generate one-time passcode (OTP) and add it to request parameters.
             Random random = new Random();
             int num = random.Next(100000);
             string verifyCode = num.ToString();
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("verify_code", verifyCode);
 
             try
             {
+                // Instantiate a verification client object.
                 VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
+
+                // Make the request and capture the response.
                 RestClient.TelesignResponse telesignResponse = verifyClient.Sms(phoneNumber, parameters);
 
-                Console.WriteLine("Please enter your verification code:");
+                // Display the response in the console for debugging purposes. 
+                // In your production code, you would likely remove this.
+                Console.WriteLine("\nResponse HTTP status:\n" + telesignResponse.StatusCode);
+                Console.WriteLine("\nResponse body:\n" + telesignResponse.Body);
+
+                // Display prompt to enter asserted OTP in the console.
+                // In your production code, you would instead collect the asserted OTP from the end-user.
+                Console.WriteLine("\nPlease enter your verification code:");
                 string code = Console.ReadLine().Trim();
 
+                // Determine if the asserted OTP matches your original OTP, and resolve the login attempt accordingly. 
+                // You can simulate this by reporting whether the codes match.
                 if (verifyCode == code)
                 {
-                    Console.WriteLine("Your code is correct.");
+                    Console.WriteLine("\nYour code is correct.\n");
                 }
                 else
                 {
-                    Console.WriteLine("Your code is incorrect.");
+                    Console.WriteLine("\nYour code is incorrect.\n");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAn exception occured.\nERROR: " + e.Message + "\n");
+                Console.ResetColor();
             }
+
+            return;
+
         }
     }
 }

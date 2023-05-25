@@ -12,7 +12,7 @@ namespace SendSMS
             string apiKey = "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
             
             // Set the default below to your test phone number. 
-            // In your production code, update the phone number dynamically for each transaction.
+            // In your production code, update the phone number dynamically for each transaction.    
             string phoneNumber = "11234567890";
 
             // (Optional) Pull values from environment variables instead of hardcoding them.
@@ -28,16 +28,23 @@ namespace SendSMS
                 phoneNumber = System.Environment.GetEnvironmentVariable("PHONE_NUMBER");
             }
 
-            string message = "Hello world!";
+            // Set the message text and type.
+            string message = "Your package has shipped!";
             string messageType = "ARN";
 
             try
             {
-                // Instantiate a verification client object.
+                // Instantiate a messaging client object.
                 MessagingClient messagingClient = new MessagingClient(customerId, apiKey);
 
-                
+                // Make the request and capture the response.
                 RestClient.TelesignResponse telesignResponse = messagingClient.Message(phoneNumber, message, messageType);
+
+                // Display the response in the console for debugging purposes. 
+                // In your production code, you would likely remove this.
+                Console.WriteLine("\nResponse HTTP status:\n" + telesignResponse.StatusCode);
+                Console.WriteLine("\nResponse body:\n" + telesignResponse.Body);
+
             }
             catch (Exception e)
             {
