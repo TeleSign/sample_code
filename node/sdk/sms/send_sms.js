@@ -9,7 +9,7 @@ const apiKey = process.env.API_KEY || "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYl
 const phoneNumber = process.env.PHONE_NUMBER || "11234567890";
 
 // Set the message text and type.
-const message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456.";
+const message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456";
 const messageType = "ARN";
 
 // Instantiate a messaging client object.
