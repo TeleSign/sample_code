@@ -29,7 +29,7 @@ namespace SendSMS
             }
 
             // Set the message text and type.
-            string message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456.";
+            string message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456";
             string messageType = "ARN";
 
             try
