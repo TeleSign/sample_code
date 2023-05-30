@@ -29,7 +29,7 @@ namespace SendSMS
             }
 
             // Set the message text and type.
-            string message = "Your package has shipped!";
+            string message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456.";
             string messageType = "ARN";
 
             try
@@ -48,7 +48,9 @@ namespace SendSMS
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nAn exception occured.\nERROR: " + e.Message + "\n");
+                Console.ResetColor();
             }
 
             Console.WriteLine("Press any key to quit.");

@@ -9,8 +9,8 @@ api_key = ENV['API_KEY'] || 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6Ne
 phone_number = ENV['PHONE_NUMBER'] || '11234567890'
 
 # Set the message text and type.
-message = 'Your package has shipped!'
-messageType = 'ARN'
+message = 'Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456.'
+message_type = 'ARN'
 
 # Instantiate a messaging client object.
 client = Telesign::MessagingClient.new(customer_id, api_key)

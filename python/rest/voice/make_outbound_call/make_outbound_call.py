@@ -10,8 +10,8 @@ api_key = os.getenv('API_KEY', 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh
 url = "https://rest-ww.telesign.com/v2/voice"
 
 # Set the Voice API inputs.
-destination_number = os.getenv('PHONE_NUMBER', '15554441313') # The complete phone number you want to call, including country code, with no special characters or spaces.
-caller_id_number = os.getenv('SENDER_ID', '15555551212') # The phone number you purchased from TeleSign.
+destination_number = os.getenv('PHONE_NUMBER', '11234567890') # The complete phone number you want to call, including country code, with no special characters or spaces.
+caller_id_number = os.getenv('SENDER_ID', '11234567890') # The phone number you purchased from TeleSign.
 send_dtmf = '8' # Digits to add into the call.
 
 # Generate auth string.

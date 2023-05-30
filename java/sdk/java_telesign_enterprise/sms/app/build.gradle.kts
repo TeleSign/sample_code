@@ -20,6 +20,9 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+    implementation("com.google.code.gson:gson:2.2.+")
+    implementation ("com.squareup.okio:okio:2.9.0")
+    implementation("com.telesign:telesign:2.3.0")
 }
 
 testing {

@@ -11,7 +11,7 @@ $api_key = getenv('API_KEY') ? getenv('API_KEY') :'ABC12345yusumoN6BYsBVkh+yRJ5c
 $phone_number = getenv('PHONE_NUMBER') ? getenv('PHONE_NUMBER'):'11234567890';
 
 # Set the message text and type.
-$message = "Your package has shipped!";
+$message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456.";
 $message_type = "ARN";
 
 # Instantiate a messaging client object.

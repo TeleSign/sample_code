@@ -19,7 +19,7 @@ public class App {
         String phoneNumber = System.getenv().getOrDefault("PHONE_NUMBER", "11234567890");
 
         // Set the message text and type.
-        String message = "Your package has shipped!";
+        String message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456.";
         String messageType = "ARN";
 
         try {
