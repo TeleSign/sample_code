@@ -39,3 +39,7 @@ application {
     // Define the main class for the application.
     mainClass.set("sendSMS.App")
 }
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
