@@ -2,6 +2,7 @@ require 'telesign'
 require 'telesignenterprise'
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
+# Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 customer_id = ENV['CUSTOMER_ID'] || 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890'
 api_key = ENV['API_KEY'] || 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw=='
 
@@ -9,7 +10,7 @@ api_key = ENV['API_KEY'] || 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6Ne
 # In your production code, update the phone number dynamically for each transaction.
 phone_number = ENV['PHONE_NUMBER'] || '11234567890'
 
-# Generate one-time passcode (OTP) and add it to request parameters.
+# Generate one-time passcode (OTP).
 verify_code = Telesign::Util.random_with_n_digits(5)
 
 # Instantiate a verification client object.

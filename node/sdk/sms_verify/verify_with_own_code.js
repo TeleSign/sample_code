@@ -1,6 +1,7 @@
 const TelesignSDK = require('telesignenterprisesdk');
 
 // Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
+// Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 const customerId = process.env.CUSTOMER_ID || "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
 const apiKey = process.env.API_KEY || "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
 
@@ -22,13 +23,15 @@ function smsVerifyCallback(error, responseBody) {
     // Display the response body in the console for debugging purposes. 
     // In your production code, you would likely remove this.
     if (error === null) {
+        // Display the response body in the console for debugging purposes. 
+        // In your production code, you would likely remove this.
         console.log("\nResponse body:\n" + JSON.stringify(responseBody));
     } else {
         console.error("Unable to send message. " + error);
     }
     // Display prompt to enter asserted OTP in the console.
     // In your production code, you would instead collect the asserted OTP from the end-user.
-    prompt('\nPlease enter the verification code you were sent:\n', verify);
+    prompt('\nEnter the verification code you received:\n', verify);
 }
 
 function prompt(question, callback) {

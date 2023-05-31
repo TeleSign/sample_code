@@ -13,7 +13,7 @@ public class App {
 
         String phoneNumber = System.getenv().getOrDefault("PHONE_NUMBER", "15558675309");
 
-        String message = "Hello world";
+        String message = "Your package has shipped!";
         String messageType = "ARN";
 
         try {

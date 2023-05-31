@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 
 public class App {
-
     
     public static void main(String[] args) {
         // Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.

@@ -14,7 +14,7 @@ namespace SendOTP
             string apiKey = "ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==";
             
             // Set the default below to your test phone number. 
-            // In your production code, update the phone number dynamically for each transaction.
+            // In your production code, update the phone number dynamically for each transaction.                
             string phoneNumber = "11234567890";
 
             // (Optional) Pull values from environment variables instead of hardcoding them.
@@ -38,7 +38,7 @@ namespace SendOTP
             parameters.Add("verify_code", verifyCode);
 
             try
-            {                
+            {
                 // Instantiate a verification client object.
                 VerifyClient verifyClient = new VerifyClient(customerId, apiKey);
 
@@ -47,23 +47,23 @@ namespace SendOTP
 
                 // Display the response in the console for debugging purposes. 
                 // In your production code, you would likely remove this.
-                Console.WriteLine(string.Format("\nResponse HTTP status:\n{0}",telesignResponse.StatusCode));
-                Console.WriteLine(string.Format("Response body:\n{0}\n",telesignResponse.Body));
+                Console.WriteLine("\nResponse HTTP status:\n" + telesignResponse.StatusCode);
+                Console.WriteLine("\nResponse body:\n" + telesignResponse.Body);
 
                 // Display prompt to enter asserted OTP in the console.
                 // In your production code, you would instead collect the asserted OTP from the end-user.
-                Console.WriteLine("Please enter your verification code:");
+                Console.WriteLine("\nPlease enter your verification code:");
                 string code = Console.ReadLine().Trim();
 
                 // Determine if the asserted OTP matches your original OTP, and resolve the login attempt accordingly. 
                 // You can simulate this by reporting whether the codes match.
                 if (verifyCode == code)
                 {
-                    Console.WriteLine("Your code is correct.");
+                    Console.WriteLine("\nYour code is correct.\n");
                 }
                 else
                 {
-                    Console.WriteLine("Your code is incorrect.");
+                    Console.WriteLine("\nYour code is incorrect.\n");
                 }
             }
             catch (Exception e)
@@ -72,6 +72,9 @@ namespace SendOTP
                 Console.WriteLine("\nAn exception occured.\nERROR: " + e.Message + "\n");
                 Console.ResetColor();
             }
+
+            return;
+
         }
     }
 }
