@@ -1,6 +1,6 @@
 import os
 
-from telesign.messaging import MessagingClient
+from telesign.score import ScoreClient
 
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
@@ -11,15 +11,15 @@ api_key = os.getenv('API_KEY', 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh
 # In your production code, update the phone number dynamically for each transaction.
 phone_number = os.getenv('PHONE_NUMBER', '11234567890')
 
-# Set the message text and type.
-message = "Your package has shipped! Follow your delivery at https://vero-finto.com/orders/3456"
-message_type = "ARN"
+# Set a parameter for the account lifecycle stage the end user is in.
+account_lifecycle_event = "create"
 
-# Instantiate a messaging client object.
-messaging = MessagingClient(customer_id, api_key)
+# Instantiate an Intelligence client object.
+intelligence = ScoreClient(customer_id, api_key)
 
-# Make the request and capture the response.
-response = messaging.message(phone_number, message, message_type)
+# Make the request and capture the response. 
+# The request_risk_insights flag is needed to use the latest version of Intelligence.
+response = intelligence.score(phone_number, account_lifecycle_event, request_risk_insights="true")
 
 # Display the response body in the console for debugging purposes. 
 # In your production code, you would likely remove this.

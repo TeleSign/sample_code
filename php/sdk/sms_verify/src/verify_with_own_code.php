@@ -5,12 +5,12 @@ use function telesign\sdk\util\randomWithNDigits;
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
-$customer_id = getenv('CUSTOMER_ID') ? getenv('CUSTOMER_ID') :'FFFFFFFF-EEEE-DDDD-1234-AB1234567890';
-$api_key = getenv('API_KEY') ? getenv('API_KEY') :'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==';
+$customer_id = getenv('CUSTOMER_ID') ?? 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890';
+$api_key = getenv('API_KEY') ?? 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==';
 
 # Set the default below to your test phone number or pull it from an environment variable. 
 # In your production code, update the phone number dynamically for each transaction.
-$phone_number = getenv('PHONE_NUMBER') ? getenv('PHONE_NUMBER'):'11234567890';
+$phone_number = getenv('PHONE_NUMBER') ?? '11234567890';
 
 # Generate one-time passcode (OTP) for verification.
 $verify_code = randomWithNDigits(5);

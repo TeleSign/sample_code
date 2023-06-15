@@ -1,6 +1,8 @@
+import os
+
 from telesignenterprise.verify import VerifyClient
 from telesign.util import random_with_n_digits
-import os
+
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')
