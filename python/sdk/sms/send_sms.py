@@ -1,5 +1,7 @@
-from telesign.messaging import MessagingClient
 import os
+
+from telesign.messaging import MessagingClient
+
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from telesignenterprise.verify import VerifyClient
 import os
+
+from telesignenterprise.verify import VerifyClient
+
 
 # Replace the defaults below with your TeleSign authentication credentials from https://teleportal.telesign.com
 customer_id = os.getenv('CUSTOMER_ID', 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890')

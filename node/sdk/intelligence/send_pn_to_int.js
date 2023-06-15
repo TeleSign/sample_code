@@ -29,4 +29,13 @@ function intCallback(error, responseBody) {
 }
 
 // Make the request and capture the response. 
-client.score.score(function (error, responseBody) {console.log("\nResponse body:\n" + JSON.stringify(responseBody))}, phoneNumber, account_lifecycle_event, null, null, null, null, request_risk_insights);
+client.score.score(
+    intCallback, 
+    phoneNumber, 
+    account_lifecycle_event, 
+    null, 
+    null, 
+    null, 
+    null, 
+    request_risk_insights
+);
