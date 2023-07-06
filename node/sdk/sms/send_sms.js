@@ -1,4 +1,4 @@
-var TeleSignSDK = require('telesignsdk');
+const TeleSignSDK = require('telesignsdk');
 
 // Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 const customerId = process.env.CUSTOMER_ID || "FFFFFFFF-EEEE-DDDD-1234-AB1234567890";
