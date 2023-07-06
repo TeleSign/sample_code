@@ -4,7 +4,6 @@ use telesign\enterprise\sdk\verify\VerifyClient;
 use function telesign\sdk\util\randomWithNDigits;
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
-# Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 $customer_id = getenv('CUSTOMER_ID') ?? 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890';
 $api_key = getenv('API_KEY') ?? 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==';
 
