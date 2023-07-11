@@ -8,5 +8,5 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-rootProject.name = "sendPID"
+rootProject.name = "sendPNtoPID"
 include("app")
