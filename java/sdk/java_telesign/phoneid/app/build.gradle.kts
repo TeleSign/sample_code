@@ -37,5 +37,5 @@ testing {
 
 application {
     // Define the main class for the application.
-    mainClass.set("sendPID.App")
+    mainClass.set("sendPNtoPID.App")
 }
