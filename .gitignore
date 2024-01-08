@@ -18,3 +18,7 @@
 **/src/test/
 **/src/main/resources/
 **/.gitattributes
+**/.DS_Store
+**/.idea/
+**/.python-version
+**/__pycache__
