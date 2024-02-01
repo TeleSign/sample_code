@@ -16,7 +16,6 @@ phone_number = '16262026728'
 pid = PhoneIdClient(customer_id, api_key,  rest_endpoint='https://phoneid-api-ci.c11.telesign.com')
 
 # Add the payload
-
 print("\nPhone number:{}\n".format(phone_number))
 
 payload = {  
