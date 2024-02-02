@@ -37,12 +37,13 @@ namespace SendPNtoPIDContact
                 PhoneIdClient phoneIdClient = new PhoneIdClient(customerId, apiKey);
 
                 // Add the payload
-                object contact = new object(){};
-                Dictionary<string, object> payload = new Dictionary<string, object>();
-                payload.Add("addons", contact);
+                Dictionary<string, object> contact = new Dictionary<string, object>();
+                contact.Add("contact", new Dictionary<string, object>());
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                parameters.Add("addons", contact);
 
                 // Make the request and capture the response.
-                RestClient.TelesignResponse telesignResponse = phoneIdClient.PhoneId(phoneNumber, payload);
+                RestClient.TelesignResponse telesignResponse = phoneIdClient.PhoneId(phoneNumber, parameters);
 
                 // Display the response in the console for debugging purposes. 
                 // In your production code, you would likely remove this.
