@@ -1,4 +1,5 @@
 require 'telesign'
+require 'json'
 
 # Replace the defaults below with your Telesign authentication credentials or pull them from environment variables.
 customer_id = ENV['CUSTOMER_ID'] || 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890'
@@ -11,16 +12,13 @@ phone_number = ENV['PHONE_NUMBER'] || '11234567890'
 # Instantiate an Intelligence client object.
 client = Telesign::PhoneIdClient.new(customer_id, api_key)
 
-# Add the payload
-payload = {  
-    "addons": {
-        "contact": {}
-    },
-    "phone_number": phone_number
+# Define the identity attribute inputs
+addons = {
+    :contact => {}
 }
 
 # Make the request and capture the response.
-response = client.phoneid(phone_number, payload)
+response = client.phoneid(phone_number, addons: addons)
 
 # Display the response in the console for debugging purposes. 
 # In your production code, you would likely remove this.
