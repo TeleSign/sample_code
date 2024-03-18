@@ -9,15 +9,14 @@ $api_key = getenv('API_KEY') ?? 'ABC12345yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmF
 # In your production code, update the phone number dynamically for each transaction.
 $phone_number = getenv('PHONE_NUMBER') ?? '11234567890';
 
-# Set a parameter for the account lifecycle stage the end user is in.
-$account_lifecycle_event = "create";
-
 # Instantiate a Phone ID client object.
 $pid = new PhoneIdClient($customer_id, $api_key);
 
+# Define the payload
+$payload["addons"]["contact"] = [];
+
 # Make the request and capture the response.
-# The request_risk_insights flag is needed to use the latest version of Intelligence.
-$response = $pid->phoneid($phone_number);
+$response = $pid->phoneid($phone_number, $payload);
 
 # Display the response body in the console for debugging purposes. 
 # In your production code, you would likely remove this.
