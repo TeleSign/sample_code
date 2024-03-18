@@ -1,4 +1,4 @@
-package sendPNtoPIDContact;
+package phoneidcontact;
 
 import java.util.Dictionary;
 import java.util.HashMap;

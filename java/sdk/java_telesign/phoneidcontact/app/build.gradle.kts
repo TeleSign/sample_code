@@ -36,5 +36,5 @@ testing {
 
 application {
     // Define the main class for the application.
-    mainClass.set("sendPNtoPIDContact.App")
+    mainClass.set("phoneidcontact.App")
 }
