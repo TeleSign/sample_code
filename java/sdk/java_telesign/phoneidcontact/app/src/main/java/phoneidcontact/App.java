@@ -22,12 +22,6 @@ public class App {
         HashMap<String, Object> otherParams = new HashMap<>();
         otherParams.put("addons", contact);
 
-        // C# code for reference
-        /*Dictionary<string, object> contact = new Dictionary<string, object>();
-        contact.Add("contact", new Dictionary<string, object>());
-        Dictionary<string, object> parameters = new Dictionary<string, object>();
-        parameters.Add("addons", contact);*/
-
         try {
             // Instantiate a Phone ID client object.
             PhoneIdClient pidClient = new PhoneIdClient(customerId, apiKey);
