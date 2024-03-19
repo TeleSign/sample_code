@@ -12,8 +12,11 @@ $phone_number = getenv('PHONE_NUMBER') ?? '11234567890';
 # Instantiate a Phone ID client object.
 $pid = new PhoneIdClient($customer_id, $api_key);
 
+# Define the payload
+$payload["addons"]["contact"] = [];
+
 # Make the request and capture the response.
-$response = $pid->phoneid($phone_number);
+$response = $pid->phoneid($phone_number, $payload);
 
 # Display the response body in the console for debugging purposes. 
 # In your production code, you would likely remove this.
